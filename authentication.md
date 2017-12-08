@@ -49,7 +49,7 @@ const options = {
 };
 
 fetch('https://api.chynge.com/v1/auth', options).then(response => {
-  console.log('access_token:', response.access_token);
+  console.log(response);
 });
 ``` 
 
