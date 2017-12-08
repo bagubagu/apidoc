@@ -1,0 +1,11 @@
+{
+  "name": "apidoc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/chynge/apidoc.git",
+  "author": "Louis Larry <louis.larry@gmail.com> (https://github.com/louislarry)",
+  "license": "MIT",
+  "dependencies": {
+    "gitbook": "^3.2.3"
+  }
+}
