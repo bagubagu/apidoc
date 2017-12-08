@@ -182,14 +182,20 @@ credential grant.</p>
 </ul>
 <div class="api-method"><div class="api-method-definition"></div><div class="api-method-code"><div class="api-method-sample" data-lang="curl" data-name="Curl"><pre><code class="lang-bash">curl -X POST --header <span class="hljs-string">&apos;Content-Type: application/json&apos;</span> <span class="hljs-_">-d</span> <span class="hljs-string">&apos;{ &quot;client_secret&quot;: &quot;tUSfmzgzV0LMsuwgxxxxxxxxxxxxxxxxxxxxxxxxx&quot;, &quot;client_id&quot;: &quot;U3kTfxxxxxxxxxxxxxxx&quot; }&apos;</span> <span class="hljs-string">&apos;https://api.chynge.com/v1/auth&apos;</span>
 </code></pre>
-</div><div class="api-method-sample" data-lang="js" data-name="JavaScript"><pre><code class="lang-bash">import {} from <span class="hljs-string">&apos;foo&apos;</span>;
+</div><div class="api-method-sample" data-lang="js" data-name="JavaScript"><pre><code class="lang-js"><span class="hljs-keyword">const</span> headers = <span class="hljs-keyword">new</span> Headers({
+    <span class="hljs-string">&quot;Content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>
+});
+
+<span class="hljs-keyword">const</span> opt = {
+    method: <span class="hljs-string">&quot;POST&quot;</span>,
+    headers: headers
+}
+
+fetch(<span class="hljs-string">&apos;https://api.chynge.com/v1/auth&apos;</span>, opt).then((response) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;access_token:&apos;</span>, response.access_token);
+})
 </code></pre>
-</div><div class="api-method-sample" data-lang="ts" data-name="TypeScript"><pre><code class="lang-bash">import {} from <span class="hljs-string">&apos;foo&apos;</span>;
-</code></pre>
-</div><div class="api-method-sample" data-lang="go" data-name="Go"><pre><code class="lang-bash">gogogo
-</code></pre>
-</div><div class="api-method-example"><pre><code>xxx
-</code></pre></div></div></div>
+</div></div></div>
 
 <p>The authorization server will respond with a JSON object containing
 following properties:</p>
@@ -198,29 +204,32 @@ following properties:</p>
 <li><code>expires_in</code> with an integer representing the TTL of the access token</li>
 <li><code>access_token</code> is the access token itself</li>
 </ul>
-<pre><code> {
-  &quot;access_token&quot;: &quot;eyJ0eXAxxxxxxxxxx.asdfasdfxxxxxxxxxx.uiokdfhksjdxxxxxx&quot;,
-  &quot;expires_in&quot;: 86400,
-  &quot;token_type&quot;: &quot;Bearer&quot;
+<pre><code class="lang-bash"> {
+  <span class="hljs-string">&quot;access_token&quot;</span>: <span class="hljs-string">&quot;eyJ0eXAxxxxxxxxxx.asdfasdfxxxxxxxxxx.uiokdfhksjdxxxxxx&quot;</span>,
+  <span class="hljs-string">&quot;expires_in&quot;</span>: 86400,
+  <span class="hljs-string">&quot;token_type&quot;</span>: <span class="hljs-string">&quot;Bearer&quot;</span>
 }
-</code></pre><p>Middleware-app can now use the returned <code>access_token</code> as the bearer token
+</code></pre>
+<p>Middleware-app can now use the returned <code>access_token</code> as the bearer token
 to authenticate with Chynge API endpoints.</p>
-<pre><code>curl -X GET --header &apos;Authorization: eyJ0eXAiOiJKV1QiLCxxxxxxxxxxxxxxxxx&apos; &apos;https://api.chynge.com/v1/country&apos;
-</code></pre><pre><code>[
+<pre><code class="lang-bash">curl -X GET --header <span class="hljs-string">&apos;Authorization: eyJ0eXAiOiJKV1QiLCxxxxxxxxxxxxxxxxx&apos;</span> <span class="hljs-string">&apos;https://api.chynge.com/v1/country&apos;</span>
+</code></pre>
+<pre><code class="lang-bash">[
   {
-    &quot;country&quot;: &quot;Indonesia&quot;,
-    &quot;countryCode&quot;: &quot;ID&quot;
+    <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;Indonesia&quot;</span>,
+    <span class="hljs-string">&quot;countryCode&quot;</span>: <span class="hljs-string">&quot;ID&quot;</span>
   },
   {
-    &quot;country&quot;: &quot;Malaysia&quot;,
-    &quot;countryCode&quot;: &quot;MY&quot;
+    <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;Malaysia&quot;</span>,
+    <span class="hljs-string">&quot;countryCode&quot;</span>: <span class="hljs-string">&quot;MY&quot;</span>
   },
   {
-    &quot;country&quot;: &quot;Singapore&quot;,
-    &quot;countryCode&quot;: &quot;SG&quot;
+    <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;Singapore&quot;</span>,
+    <span class="hljs-string">&quot;countryCode&quot;</span>: <span class="hljs-string">&quot;SG&quot;</span>
   }
 ]
-</code></pre><p>When you&apos;re using our interactive API documentation, <code>access_token</code> is
+</code></pre>
+<p>When you&apos;re using our interactive API documentation, <code>access_token</code> is
 the value that you want to copy to the api_key input in the &apos;Authorize&apos;
 before you do the &apos;try it out&apos;.</p>
 
@@ -256,7 +265,7 @@ before you do the &apos;try it out&apos;.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Authentication","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api","livereload"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"curl","name":"Curl"},{"lang":"js","name":"JavaScript"},{"lang":"ts","name":"TypeScript"},{"lang":"go","name":"Go"}],"split":true,"theme":"dark"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"authentication.md","mtime":"2017-12-08T08:23:06.151Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-08T08:08:45.788Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Authentication","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-api"],"pluginsConfig":{"theme-api":{"languages":[{"lang":"curl","name":"Curl"},{"lang":"js","name":"JavaScript"}],"split":true,"theme":"dark"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"authentication.md","mtime":"2017-12-08T09:32:29.187Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-12-08T09:32:39.837Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -264,10 +273,6 @@ before you do the &apos;try it out&apos;.</p>
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

@@ -19,3 +19,4 @@ preloaded sample database.
 
 When developer is ready to deploy to production, please send email
 to info@chynge.com and we will give you a production API and Secret key.
+

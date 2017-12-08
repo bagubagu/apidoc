@@ -12,14 +12,6 @@
         {
           "lang": "js",
           "name": "JavaScript"
-        },
-        {
-          "lang": "ts",
-          "name": "TypeScript"
-        },
-        {
-          "lang": "go",
-          "name": "Go"
         }
       ]
     }

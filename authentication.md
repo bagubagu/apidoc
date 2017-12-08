@@ -15,6 +15,7 @@ This section is intended as how to for developer's trusted middleware
 application (middleware-app) to authenticate to Chynge API through client
 credential grant.
 
+
 To aquire an access_token middleware-appe sends a POST request to 
 `api.chynge.com/v1/auth` with the following body parameters:
 - `client_id`
@@ -28,24 +29,20 @@ curl -X POST --header 'Content-Type: application/json' -d '{ "client_secret": "t
 ``` 
 
 {% sample lang="js" %}
-```bash
-import {} from 'foo';
-``` 
+```js
+const headers = new Headers({
+	"Content-type": "application/json"
+});
 
-{% sample lang="ts" %}
-```bash
-import {} from 'foo';
-``` 
+const opt = {
+	method: "POST",
+	headers: headers
+}
 
-{% sample lang="go" %}
-```bash
-gogogo
+fetch('https://api.chynge.com/v1/auth', opt).then((response) => {
+	console.log('access_token:', response.access_token);
+})
 ``` 
-
-{% common %}
-``` 
-xxx
-```
 
 {% endmethod %}
 
@@ -55,7 +52,7 @@ following properties:
 - `expires_in` with an integer representing the TTL of the access token
 - `access_token` is the access token itself
 
-```
+```bash
  {
   "access_token": "eyJ0eXAxxxxxxxxxx.asdfasdfxxxxxxxxxx.uiokdfhksjdxxxxxx",
   "expires_in": 86400,
@@ -66,11 +63,11 @@ following properties:
 Middleware-app can now use the returned `access_token` as the bearer token
 to authenticate with Chynge API endpoints.
 
-```
+```bash
 curl -X GET --header 'Authorization: eyJ0eXAiOiJKV1QiLCxxxxxxxxxxxxxxxxx' 'https://api.chynge.com/v1/country'
 ```
 
-```
+```bash
 [
   {
     "country": "Indonesia",
