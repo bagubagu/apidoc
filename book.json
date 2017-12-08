@@ -1,3 +1,27 @@
 {
-  "plugins": ["theme-api"]
+  "plugins": ["theme-api"],
+  "pluginsConfig": {
+    "theme-api": {
+      "theme": "dark",
+      "split": true,
+      "languages": [
+        {
+          "lang": "curl",
+          "name": "Curl"
+        },
+        {
+          "lang": "js",
+          "name": "JavaScript"
+        },
+        {
+          "lang": "ts",
+          "name": "TypeScript"
+        },
+        {
+          "lang": "go",
+          "name": "Go"
+        }
+      ]
+    }
+  }
 }
