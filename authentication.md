@@ -25,23 +25,32 @@ To aquire an access_token middleware-appe sends a POST request to
 
 {% sample lang="curl" %}
 ```bash
-curl -X POST --header 'Content-Type: application/json' -d '{ "client_secret": "tUSfmzgzV0LMsuwgxxxxxxxxxxxxxxxxxxxxxxxxx", "client_id": "U3kTfxxxxxxxxxxxxxxx" }' 'https://api.chynge.com/v1/auth'
+curl -X POST \
+  --url 'https://api.chynge.com/v1/auth' \
+  --header 'Content-Type: application/json' \
+  --data '{"client_secret": "tUSfmzgzV0LMsuwgxxxxxxxxxxxxxxxxxxxxxxxxx", "client_id": "U3kTfxxxxxxxxxxxxxxx"}' 
 ``` 
 
 {% sample lang="js" %}
 ```js
 const headers = new Headers({
-	"Content-type": "application/json"
+  'Content-type': 'application/json'
 });
 
-const opt = {
-	method: "POST",
-	headers: headers
-}
+const body = JSON.stringify({
+  client_id: 'U3kTfxxxxxxxxxxxxxxx',
+  client_secret: 'tUSfmzgzV0LMsuwgxxxxxxxxxxxxxxxxxxxxxxxxx'
+});
 
-fetch('https://api.chynge.com/v1/auth', opt).then((response) => {
-	console.log('access_token:', response.access_token);
-})
+const options = {
+  method: 'POST',
+  headers: headers,
+  body: body
+};
+
+fetch('https://api.chynge.com/v1/auth', options).then(response => {
+  console.log('access_token:', response.access_token);
+});
 ``` 
 
 {% endmethod %}
@@ -53,7 +62,7 @@ following properties:
 - `access_token` is the access token itself
 
 ```bash
- {
+{
   "access_token": "eyJ0eXAxxxxxxxxxx.asdfasdfxxxxxxxxxx.uiokdfhksjdxxxxxx",
   "expires_in": 86400,
   "token_type": "Bearer"
