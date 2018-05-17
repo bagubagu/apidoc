@@ -1,6 +1,6 @@
 # Chynge API
 
-Chynge public API is at [https://developer.chynge.com](https://chynge.developer.com)
+Chynge public API is at [https://developer.chynge.com](https://developer.chynge.com)
 
 When you use the interactive API documentation, most of the endpoints will
 give 'not authorized' message unless you are authorized.
