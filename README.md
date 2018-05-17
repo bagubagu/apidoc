@@ -1,6 +1,6 @@
 # Chynge API
 
-Chynge public API is at [http://chynge-api-doc-js.s3-website-ap-southeast-1.amazonaws.com](http://chynge-api-doc-js.s3-website-ap-southeast-1.amazonaws.com/)
+Chynge public API is at [https://developer.chynge.com](https://chynge.developer.com)
 
 When you use the interactive API documentation, most of the endpoints will
 give 'not authorized' message unless you are authorized.
